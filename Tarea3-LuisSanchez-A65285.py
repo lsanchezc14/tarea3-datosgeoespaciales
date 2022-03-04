@@ -241,7 +241,10 @@ cantones_sorted = cantones_sorted.merge(data_longitud_pavimento_1, on='canton', 
 cantones_sorted = cantones_sorted.merge(data_longitud_pavimento_2, on='canton', how='left')
 cantones_sorted = cantones_sorted.merge(data_longitud_camino_tierra, on='canton', how='left')
 cantones_sorted = cantones_sorted.merge(data_longitud_autopista, on='canton', how='left')
-cantones_sorted = cantones_sorted.fillna(0) # Se rellenan nulls con ceros
+
+columnas_rellenar = ['longitud_sin_pavimento', 'longitud_pavimento_1', 'longitud_pavimento_2', 'longitud_camino_tierra', 'longitud_autopista']
+
+cantones_sorted[columnas_rellenar] = cantones_sorted[columnas_rellenar].fillna(0) # Se rellenan nulls con ceros
 
 
 # In[15]:
