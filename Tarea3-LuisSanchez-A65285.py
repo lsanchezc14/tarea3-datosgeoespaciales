@@ -145,7 +145,8 @@ for i in range(len(capa_cantones_json["features"])):
         ruta = LineString(ruta_coordenadas)
         
         if canton.intersects(ruta):
-            interseccion_resultante = canton.intersection(ruta) # intersection proporciona una buena aproximación
+            # intersection proporciona una buena aproximación de la ruta recortada dentro del poligono
+            interseccion_resultante = canton.intersection(ruta)
             lista_rutas_coordenadas.append(interseccion_resultante)
             lista_rutas_categorias.append(capa_red_json["features"][j]["properties"]["categoria"])
 
@@ -317,7 +318,7 @@ fig.show()
 
 
 # Creación del mapa base de folium
-m = folium.Map(location=[9.8, -84], tiles='CartoDB positron', zoom_start=8)
+m = folium.Map(location=[9.8, -84], tiles='CartoDB positron', zoom_start=8, control_scale=True)
 
 # Creación de la capa de coropletas
 folium.Choropleth(
